@@ -1,0 +1,142 @@
+me{% extends 'PeliSeries/base.html' %}
+{% block nav %}
+    <li><a href="{% url 'home' %}">Inicio</a></li>
+    <li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
+    <li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
+    <li><a href="{% url 'consultas' %}">Consultas</a></li>
+{% endblock %}
+{% block content %}
+    {% if user.groups.all.0.name == "mantenedores" %}
+    <div class="tabla">
+        <table>
+            <caption>PeliSeries</caption>
+            <thead>
+                <tr>
+                    <th>Fecha Publicacion</th>
+                    <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>Reparto</th>
+                    <th>Año de Estreno</th>
+                    <th>Genero</th>
+                    <th>Descripcion</th>
+                    <th>Añadir</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ps in peliserie %}
+                <tr>
+                    <td data-label="Fecha Publicacion">{{ps.published_date }}</td>
+                    <td data-label="Nombre">{{ps.titulo}}</td>
+                    <td data-label="Autor">{{ps.autor}}</td>
+                    <td data-label="Reparto">{{ps.reparto}}</td>
+                    <td data-label="Año de Estreno">{{ps.year_estreno}}</td>
+                    <td data-label="Genero">{{ps.genero}}</td>
+                    <td data-label="Descripcion">{{ps.descripcion}}</td>
+                    <td data-label="Añadir" >
+                        <a href="{% url 'new_peliserie' %}" class="añadir"><span class="icon-plus"></span></a>        
+                    </td>
+                    <td data-label="Editar">
+                        <a href="{% url 'edit_peliserie' pk=ps.pk %}" class="editar"><span class="icon-pencil"></span></a>
+                    </td>
+                    <td data-label="Eliminar" >
+                        <a href="{% url 'delete_peliserie' pk=ps.pk %}" class="eliminar"><span class="icon-bin"></span>            </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="cont-btn">
+            <form action="{% url 'new_peliserie' %}" class="form-btn">
+                <button type="submit" class="btn btn-success">
+                    Agregar Peliserie
+                </button>
+            </form>
+        </div>
+    
+        <table>
+            <caption>Carrousel</caption>
+            <thead>
+                <tr>
+                    <th>Fecha Publicacion</th>
+                    <th>Pelicula</th>
+                    <th>Enunciado</th>
+                    <th>Categoria</th>
+                    <th>Visible</th>
+                    <th>Añadir</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in carrousel %}
+                <tr>
+                    <td data-label="Fecha Publicacion">{{car.fecha_public}}</td>
+                    <td data-label="Pelicula"> {{car.peliserie}}</td>
+                    <td data-label="Enunciado">{{car.enunciado}}</td>
+                    <td data-label="Categoria">{{car.categoria}}</td>
+                    <td data-label="Visible">{{car.visible}}</td>
+                    <td data-label="Añadir">
+                        <a href="{% url 'new_carousel' %}" class="añadir"><span class="icon-plus"></span></a>           
+                    </td>
+                    <td data-label="Editar">
+                        <a href="{% url 'edit_carousel' pk=car.pk %}" class="editar"><span class="icon-pencil"></span></a>
+                    </td>
+                    <td data-label="Eliminar" >
+                        <a href="{% url 'delete_carousel' pk=car.pk %}" class="eliminar"><span class="icon-bin"></span>            </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="cont-btn">
+            <form action="{% url 'new_carousel' %}" class="form-btn">
+                <button type="submit" class="btn btn-success">
+                    Agregar Carrousel
+                </button>
+            </form>
+        </div>
+
+        <table>
+            <caption>Consultas</caption>
+            <thead>
+                <tr>
+                    <th>Fecha Consulta</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Motivo</th>
+                    <th>Consulta</th>
+                    <th>Fecha Respuesta</th>
+                    <th>Respuesta</th>
+                    <th>Responder</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cons in consulta %}
+                <tr>
+                    <td data-label="Fecha Consulta">{{cons.fecha}}</td>
+                    <td data-label="Nombre">{{cons.nombre}} </td>
+                    <td data-label="Correo">{{cons.correo}}</td>
+                    <td data-label="Motivo">{{cons.motivo}}</td>
+                    <td data-label="Consulta">{{cons.consulta}}</td>
+                    <td data-label="Fecha Respuesta">{{cons.fecharespuesta}}</td>
+                    <td data-label="Respuesta">{{cons.respuesta}}</td>
+                    <td data-label="Responder">
+                        <a href="" class="editar"><span class="icon-pencil"></span></a>
+                    </td>
+                    <td data-label="Eliminar" >
+                        <a href="{% url 'delete_consulta' pk=cons.pk %}" class="eliminar"><span class="icon-bin"></span>            </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h1 class="permiso-denegado">No Tiene el permiso necesarios para acceder a este sitio</h1>
+        <a href="{% url 'home' %}">Volver a Inicio de pagina</a>
+    {% endif %}
+{% endblock %}

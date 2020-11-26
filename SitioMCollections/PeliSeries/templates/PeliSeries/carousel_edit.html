@@ -1,0 +1,29 @@
+{% extends 'PeliSeries/base.html' %}
+{% block nav %}
+    <li><a href="{% url 'home' %}">Inicio</a></li>
+    <li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
+    <li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
+    <li><a href="{% url 'consultas' %}">Contacto</a></li>
+{% endblock %}
+{% block content %}
+<div class="contenedor">
+    <form action="" method='POST' class="form" id="formulario" enctype="multipart/form-data">
+        <div class="form-header">
+            <h1 class="form-title">Carousel</h1>
+        </div>
+        {% csrf_token %}
+        <label class="form-label">Pelicula/Serie</label>
+        {{form.peliserie}}
+        <label class="form-label">Categoria</label>
+        {{form.categoria}}
+        <label class="form-label">enunciado</label>
+        {{form.enunciado}}
+        <label class="form-label">Publicar</label>
+        {{form.visible}}
+        <label class="form-label">Imagen</label>
+        {{form.img_carousel}}
+        <input type="submit" name="enviar" class="btn-submit" value="Guardar Carousel">
+        
+    </form>
+</div>
+{% endblock %}

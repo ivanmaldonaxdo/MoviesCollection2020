@@ -1,0 +1,35 @@
+{% extends 'PeliSeries/base.html' %}
+
+{% block content %}
+    <div class="tabla">
+        <table class="tabla-pserie">
+            <thead>
+                <tr>
+                    <th>Motivo</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Consulta</th>
+                    
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for con in cons %}
+                <tr>
+                    <td data-label="Motivo">{{con.motivo}}</td>
+                    <td data-label="Nombre">{{con.nombre}}</td>
+                    <td data-label="Correo">{{con.correo}}</td>
+                    <td data-label="Consulta">{{con.consulta}}</td>
+                    <td data-label="Responder" class="editar">
+                        <span class="icon-pencil"></span>            
+                    </td>
+                    <td data-label="Eliminar" class="eliminar">
+                        <span class="icon-bin"></span>            
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

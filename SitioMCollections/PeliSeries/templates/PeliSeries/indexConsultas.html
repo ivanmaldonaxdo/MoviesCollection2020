@@ -1,0 +1,29 @@
+{% extends 'PeliSeries/base.html' %}
+
+{% block nav %}
+<li><a href="{% url 'home' %}">Inicio</a></li>
+<li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
+<li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
+<li><a href="{% url 'consultas' %}"  class="activada">Consultas</a></li>
+{% endblock %}
+{% block content %}
+
+<div class="contenedor">
+    <form action="/Consultas/" method='POST' class="form" id="formulario">
+        <div class="form-header">
+            <h1 class="form-title">Consultas</h1>
+        </div>
+        {% csrf_token %}
+        {% for fields in form %}
+            <div class='field'>
+                <label for="{{field.id_for_label}}" class="form-label" >{{fields.html_name}}</label>
+                {{ fields }}
+            </div>
+        {% endfor %}
+            <input type="submit" name="enviar" class="btn-submit" value="Enviar Consulta">
+    </form>  
+</div>
+
+ 
+
+{% endblock %}

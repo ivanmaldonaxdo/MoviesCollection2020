@@ -1,0 +1,27 @@
+{% extends 'PeliSeries/base.html' %}
+{% block nav %}
+<li><a href="{% url 'home' %}">Inicio</a></li>
+<li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
+<li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
+<li><a href="{% url 'consultas' %}">Consultas</a></li>
+{% endblock %}
+{% block content %}
+<div class="contenedor">
+    <form method='POST' class="form" id="formulario">
+        <div class="form-header">
+            <h1 class="form-title">Login</h1>
+        </div>  
+        {% csrf_token %}
+        <label class="form-label">Nombre de Usuario</label>
+        <input class="form-input" type="text" name="username">
+        <label class="form-label">Contraseña</label>
+        <input class="form-input" type="password" name="password">
+        <input type="submit" name="enviar" class="btn-submit" value="Iniciar sesion">
+        <div class="form-header">
+            <p class="form-title"><a class="form-title" href="{% url 'reset_password' %}">Recuperar contraseña</a></p>
+        </div>
+    </form>  
+</div>
+ 
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'PeliSeries/base.html' %}
+{% block nav %}
+<li><a href="{% url 'home' %}">Inicio</a></li>
+<li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
+<li><a href="{% url 'indexSeries' %}" class="activada">BiblioSeries</a></li>
+<li><a href="{% url 'consultas' %}">Consultas</a></li>
+{% endblock %}
+{% block content %}
+<section class="grid-layout-boxes">
+    {% for serie in series %}
+    <article class="cajapeli-serie">
+        <h5><a href="{% url 'detailPS' pk=serie.pk %}">{{serie.titulo}}</a></h5>
+        <img src="{{ serie.caratula.url }}" alt="">
+        <a class="guarda-favorito"  ><span class="icon-heart "></span></a>
+        <form class="descpelis">
+            <div class="sect-estreno">
+                <label for="estreno">Año Estreno: </label>
+                <p name="estreno"> {{serie.year_estreno}}</p>
+            </div>
+            <div class="sect-genero">
+                <label for="genero">Género: </label>
+                <p name="genero"> {{serie.genero}}</p>
+            </div>
+            <div class="sect-desc">
+                <label for="descripcion">Descripción: </label>
+                <p name="descripcion" class="limitadesc">
+                 {{serie.descripcion}}   
+                </p>
+            </div>
+        </form>
+    </article>
+    {% endfor %}
+</section>
+<div class="subir-inicio">
+    <a href="#"><span class="icon-arrow-up"></span></a>
+</div>
+{% endblock %}

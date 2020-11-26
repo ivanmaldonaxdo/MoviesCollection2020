@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Movies Collection</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <!-- ESTILOS -->
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <!-- SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+        <script src="https://kit.fontawesome.com/dfdab27f6e.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="{% static 'js/funciones.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+    </head>
+
+    <body>
+        <header class="ordenhead">
+            <!-- BOTON MENU -->
+            <div id="menu_bar">
+                <a href="#" class="bt_menu">
+                    <span class="icon-menu"></span>
+                </a>
+            </div>
+            <img src="{% static 'img/LogoWeb MovieCollection(Header).png' %}" alt="ERROR" id="logomovc">
+            <nav class="menu">
+                <ul>
+                    {% block nav %}
+                    {% endblock %}
+                </ul>
+            </nav>
+            <a href="#" class="login">
+                <span class="icon-user"></span>            
+            </a>
+            <nav class="opc-user">
+                <ul>
+                    {% url 'mantenedor'  as mant %}
+                    {% url 'register'  as reg %}
+                    {% url 'login'  as log %}
+                    {% if user.is_authenticated %}
+                        <li><a href=""><span class="icon-user"></span>Usuario : {{user.username }}</a></li>
+                        {% if user.groups.all.0.name == "mantenedores" %}
+                            <li><a href="{% url 'mantenedor'%}" class="{% if request.get_full_path == mant %} opc-activ {% endif %}" >
+                                <span class="icon-list"></span> Administrar Contenido</a>
+                            </li>
+                        {% else %}
+                            <li  ><a href=""> <span class="icon-heart "></span> Contenido guardado</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}" > <span class="icon-exit"></span> Cerrar Sesion</a></li>
+                    {% else %}
+                        <li><a href="{% url 'register' %}" class="{% if request.get_full_path == reg %} opc-activ {% endif %}"> 
+                            <span class="icon-user-plus"></span> Registrarse</a>
+                        </li>
+                        <li><a href="{% url 'login' %}" class="{% if request.get_full_path == log %} opc-activ {% endif %}"> 
+                            <span class="icon-enter"></span> Iniciar Sesion</a>
+                        </li>
+                    {% endif %} 
+                </ul>
+            </nav>
+        </header>
+        <div class="contenedor">
+           {% block content %}
+           {% endblock %}
+        </div>
+        <footer>
+            <section class="iconsweb">
+                <a href="#"><span class="icon-whatsapp"></span> </a>
+                <a href="#"><span class="icon-instagram"></span></a>
+                <a href="#"><span class="icon-facebook2"></span></a>
+            </section>
+            <p>© 2020 MOVIESCOLLECTION | TODOS LOS DERECHOS RESERVADOS</p>
+        </footer>
+    </body>
+</html>

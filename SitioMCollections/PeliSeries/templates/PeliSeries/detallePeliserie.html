@@ -1,0 +1,52 @@
+{% extends 'PeliSeries/base.html' %}
+{% block nav %}
+<li><a href="{% url 'home' %}">Inicio</a></li>
+<li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
+<li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
+<li><a href="{% url 'consultas'%}">Consultas</a></li>
+{% endblock %}
+{% block content %}
+<section class="detail">
+    <div class="detail-img" >
+        <h5> {{peliserie.titulo}}</h5>
+        <img src="{{ peliserie.caratula.url }}" alt="">
+    </div>
+    <div class="info-peliserie">
+        <!-- <a class="guarda-favorito"  ><span class="icon-heart "></span></a> -->
+        <div class="info-texto">
+            <label for="autor">Autor: </label>
+            <p name="autor"> {{peliserie.autor}}</p>
+        </div>
+        <div class="info-texto">
+            <label for="reparto">Reparto: </label>
+            <p name="reparto"> {{peliserie.reparto}}</p>
+        </div>
+        <div class="info-texto">
+            <label for="estreno">Año Estreno: </label>
+            <p name="estreno"> {{peliserie.year_estreno}}</p>
+        </div>
+        <div class="info-texto">
+            <label for="genero">Género: </label>
+            <p name="genero"> {{peliserie.genero}}</p>
+        </div>
+        <div class="info-texto">
+            <label for="descripcion">Descripción: </label>
+            <p name="descripcion">{{peliserie.descripcion}}</p>
+        </div>
+    </div>
+
+</section>
+<h5 class="recomendada-h5">Porque viste "{{peliserie.titulo}}"..te recomendamos....</h5>
+<div class="recomendada">
+    {% for sim in similar|slice:":8" %}
+    <div class="similar">
+        <h5><a href="{% url 'detailPS' pk=sim.pk %}">{{sim.titulo}}</a></h5>
+        <img src="{{ sim.caratula.url }}"  alt="">
+    </div>
+    {% endfor %}
+</div>
+
+<div class="subir-inicio">
+    <a href="#"><span class="icon-arrow-up"></span></a>
+</div>
+{% endblock %}
