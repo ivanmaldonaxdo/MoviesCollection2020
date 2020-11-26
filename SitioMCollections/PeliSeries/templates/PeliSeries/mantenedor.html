@@ -77,7 +77,13 @@ me{% extends 'PeliSeries/base.html' %}
                     <td data-label="Pelicula"> {{car.peliserie}}</td>
                     <td data-label="Enunciado">{{car.enunciado}}</td>
                     <td data-label="Categoria">{{car.categoria}}</td>
-                    <td data-label="Visible">{{car.visible}}</td>
+                    <td data-label="Visible">
+                        {% ifequal car.visible True %}
+                            <input type="checkbox" name="cb-autos" value="gusta" disabled checked>
+                        {% else %}
+                            <input type="checkbox" name="cb-autos" disabled value="gusta">
+                        {% endifequal  %}
+                    </td>
                     <td data-label="Añadir">
                         <a href="{% url 'new_carousel' %}" class="añadir"><span class="icon-plus"></span></a>           
                     </td>
