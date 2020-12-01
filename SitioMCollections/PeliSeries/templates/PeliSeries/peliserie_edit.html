@@ -1,15 +1,9 @@
 {% extends 'PeliSeries/base.html' %}
-{% block nav %}
-    <li><a href="{% url 'home' %}">Inicio</a></li>
-    <li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
-    <li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
-    <li><a href="{% url 'consultas' %}">Consultas</a></li>
-{% endblock %}
 {% block content %}
 <div class="contenedor">
     <form action="" method='POST' class="form" id="formulario" enctype="multipart/form-data">
         <div class="form-header">
-            <h1 class="form-title">Peliserie</h1>
+            <h1 class="form-title">Añadir / Editar Peliserie</h1>
         </div>
         {% csrf_token %}
         <label class="form-label">Categoria</label>
