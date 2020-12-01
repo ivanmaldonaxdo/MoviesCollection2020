@@ -1,10 +1,4 @@
 {% extends 'PeliSeries/base.html' %}
-{% block nav %}
-    <li><a href="{% url 'home' %}" class="activada">Inicio</a></li>
-    <li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
-    <li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
-    <li><a href="{% url 'consultas' %}">Consultas</a></li>
-{% endblock %}
 {% block content %}
 <div id="carouselExampleIndicators" class="carousel slide sliderubic" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -33,7 +27,6 @@
     <article id="infoleft" class="box">
         <div id="#centra-texto" class="sub-box .centra-txt ">
             <h2>Movies Collection, las mejores recomendaciones de películas y series para que disfrutes en tu casa.</h2>
-            <!-- aprender sobre las peliculas -->
             <p>Síguenos semanalmente para mantenerte actualizado</p>
         </div>
         <div class="sub-box centra">
@@ -49,6 +42,6 @@
             <h2>También informate de las últimas novedades del cine en el mundo</h2>
             <p>Si tienes dudas puedes dejarnos tu comentario en nuestro apartado de contacto</p>
         </div>
-        
     </article>
-</section>{% endblock %}
+</section>
+{% endblock %}

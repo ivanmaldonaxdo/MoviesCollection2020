@@ -28,8 +28,14 @@
             <img src="{% static 'img/LogoWeb MovieCollection(Header).png' %}" alt="ERROR" id="logomovc">
             <nav class="menu">
                 <ul>
-                    {% block nav %}
-                    {% endblock %}
+                    {% url 'home'  as hm %}
+                    {% url 'indexPelis'  as pel %}
+                    {% url 'indexSeries'  as ser %}
+                    {% url 'consultas'  as con %}
+                    <li><a href="{% url 'home' %}" class="{% if request.get_full_path == hm %} activada {% endif %}" >Inicio</a></li>
+                    <li><a href="{% url 'indexPelis' %}" class="{% if request.get_full_path == pel %} activada {% endif %}" >BiblioPelis</a></li>
+                    <li><a href="{% url 'indexSeries' %}" class="{% if request.get_full_path == ser %} activada {% endif %}" >BiblioSeries</a></li>
+                    <li><a href="{% url 'consultas' %}" class="{% if request.get_full_path == con %} activada {% endif %}" >Consultas</a></li>
                 </ul>
             </nav>
             <a href="#" class="login">

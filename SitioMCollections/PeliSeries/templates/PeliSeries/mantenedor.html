@@ -1,10 +1,4 @@
-me{% extends 'PeliSeries/base.html' %}
-{% block nav %}
-    <li><a href="{% url 'home' %}">Inicio</a></li>
-    <li><a href="{% url 'indexPelis' %}">BiblioPelis</a></li>
-    <li><a href="{% url 'indexSeries' %}">BiblioSeries</a></li>
-    <li><a href="{% url 'consultas' %}">Consultas</a></li>
-{% endblock %}
+{% extends 'PeliSeries/base.html' %}
 {% block content %}
     {% if user.groups.all.0.name == "mantenedores" %}
     <div class="tabla">
@@ -79,9 +73,9 @@ me{% extends 'PeliSeries/base.html' %}
                     <td data-label="Categoria">{{car.categoria}}</td>
                     <td data-label="Visible">
                         {% ifequal car.visible True %}
-                            <input type="checkbox" name="cb-autos" value="gusta" disabled checked>
+                            <input type="checkbox" name="car_visible" value="visible" disabled checked>
                         {% else %}
-                            <input type="checkbox" name="cb-autos" disabled value="gusta">
+                            <input type="checkbox" name="car_visible" disabled value="oculto">
                         {% endifequal  %}
                     </td>
                     <td data-label="Añadir">
