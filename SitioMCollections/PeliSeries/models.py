@@ -84,13 +84,13 @@ class Usuario(models.Model):
 
 class Noticia(models.Model):
     titulo = models.CharField(max_length=150,null=False,blank=False)
-    descripcion=models.CharField(max_length=15,null=False,blank=False)   
+    descripcion=models.CharField(max_length=150,null=False,blank=False)   
     fecha_public = models.DateTimeField(blank=True, null=True,verbose_name='Fecha de Publicación') 
-    img_noticia=models.ImageField( upload_to='images/noticias',null=True,blank=True,verbose_name="imagen")
+    img_notic = models.ImageField(upload_to='images/noticia')
     def publish(self): 
         self.fecha_public = timezone.now()
-        self.save() 
+        self.save()
+  
+    def __str__(self): 
+        return self.titulo
          
-
-
-    
