@@ -19,7 +19,9 @@
         <input type="submit" name="enviar" class="btn-submit" value="Iniciar sesion">
         <div class="form-header">
             <p class="form-title"><a class="form-title" href="{% url 'reset_password' %}">Recuperar contraseña</a></p>
-        </div>
+            <p class="form-title"><a class="form-title" href="{% url 'social:begin' 'facebook' %}">Ingresar con facebook</a></p>
+        </div> 
+        
     </form>  
 </div>
  
