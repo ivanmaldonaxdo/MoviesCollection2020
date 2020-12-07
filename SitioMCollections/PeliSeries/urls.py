@@ -1,5 +1,11 @@
 from django.conf.urls import include, url 
 from . import views
+from .views import ApiMoviesCollections
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('peliserie', ApiMoviesCollections)
+
 urlpatterns = [ 
     url(r'^$', views.indexInicio,name='home'),
     url(r'^Register/$', views.register, name="register"),
@@ -16,4 +22,5 @@ urlpatterns = [
     url(r'^Carousel/(?P<pk>[0-9]+)/delete/$', views.EliminarCarousel, name='delete_carousel'),
     url(r'^Consultas/$', views.indexConsultas, name='consultas'),
     url(r'^Consultas/(?P<pk>[0-9]+)/delete/$', views.EliminarConsulta, name='delete_consulta'),
+    url(r'^api/', include(router.urls))
 ]

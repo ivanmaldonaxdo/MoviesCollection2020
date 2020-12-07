@@ -32,14 +32,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'PeliSeries',
-    'usuarios',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'usuarios',
+    'PeliSeries',
+    'social_django',
+    'rest_framework'
     
 ]
 
@@ -131,6 +133,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+SOCIAL_AUTH_FACEBOOK_KEY="424665655376334"
+SOCIAL_AUTH_FACEBOOK_SECRET="cdac2f1084c5b36a9ec256853a527b41"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -138,3 +142,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'javiermaldonadogonzalez98@gmail.com'
 EMAIL_HOST_PASSWORD = '028737998'
+
+
+AUTHENTICATION_BACKENDS = [
+    
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]

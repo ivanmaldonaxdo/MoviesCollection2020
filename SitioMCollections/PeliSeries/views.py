@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from .forms import FormPeliserie,FormCarrousel,FormConsulta
 from .models import Categoria,Peliserie,Carousel,Consulta
+from rest_framework import viewsets
+from .serializers import ProductoSerializer
+
 # Create your views here.
 def indexInicio(request): 
     carrous=Carousel.objects.all()
@@ -123,3 +126,8 @@ def EliminarCarousel(request,pk):
     peliserie=Peliserie.objects.all()
     consulta=Consulta.objects.all()
     return render(request, 'PeliSeries/mantenedor.html', {"carrousel":carousel,'peliserie':peliserie,'consulta':consulta})     
+
+#View API
+class ApiMoviesCollections(viewsets.ModelViewSet):
+    queryset = Peliserie.objects.all()
+    serializer_class = ProductoSerializer
