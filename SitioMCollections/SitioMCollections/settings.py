@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'usuarios',
     'PeliSeries',
     'social_django',
+    'rest_framework'
     
 ]
 
@@ -132,8 +133,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-SOCIAL_AUTH_FACEBOOK_KEY="370777947361114"
-SOCIAL_AUTH_FACEBOOK_SECRET="98d49b712d5b94fff62f193418a540b6"
+SOCIAL_AUTH_FACEBOOK_KEY="424665655376334"
+SOCIAL_AUTH_FACEBOOK_SECRET="cdac2f1084c5b36a9ec256853a527b41"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
