@@ -18,7 +18,7 @@ def ruta_imagen(instance,filename):
     return 'images/{0}/{1}'.format(instance.categoria.nombre_categ, filename)
 
 class Peliserie(models.Model): 
-    admin = models.ForeignKey('auth.User', on_delete=models.CASCADE,verbose_name="Admim") 
+    admin = models.ForeignKey('auth.User', on_delete=models.CASCADE,verbose_name="Admin") 
     categoria=models.ForeignKey(Categoria,on_delete=models.CASCADE)
     autor=models.CharField(max_length=200,verbose_name="Autor/a",null=True,blank=True) 
     reparto=models.CharField(max_length=200,null=True,blank=True) 
@@ -61,32 +61,15 @@ class Consulta(models.Model):
     fecharespuesta=models.DateField(null=True)
     respuesta=models.TextField(max_length=200, null=True)
 
-    
-
     def __str__(self):
         self.save()
         return self.motivo
-
-       
-def img_user(self,filename):       
-    return 'images/Usuarios/{0}'.format(filename)
-
-# class Usuario(models.Model):
-class Usuario(models.Model):
-    nombre=models.CharField(max_length=70,null=False,blank=False)      
-    email=models.EmailField(max_length=70,null=False,blank=False)
-    contraseña=models.CharField(max_length=8,null=False,blank=False)
-    img_usuario=models.ImageField(upload_to=img_user)
-    admin = models.ForeignKey('auth.User', on_delete=models.CASCADE,verbose_name="Admim",blank=True, null=True) 
-    
-    def __str__(self): 
-        return self.nombre
 
 class Noticia(models.Model):
     titulo = models.CharField(max_length=150,null=False,blank=False)
     descripcion=models.CharField(max_length=150,null=False,blank=False)   
     fecha_public = models.DateTimeField(blank=True, null=True,verbose_name='Fecha de Publicación') 
-    img_notic = models.ImageField(upload_to='images/noticia')
+    img_notic = models.ImageField(upload_to='images/noticia',null=True)
     def publish(self): 
         self.fecha_public = timezone.now()
         self.save()
