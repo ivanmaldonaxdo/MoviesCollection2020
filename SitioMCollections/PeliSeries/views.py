@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from .forms import FormPeliserie,FormCarrousel,FormConsulta
-from .models import Categoria,Peliserie,Carousel,Usuario,Consulta
+from .models import Categoria,Peliserie,Carousel,Consulta
 from rest_framework import viewsets
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.filters import SearchFilter
