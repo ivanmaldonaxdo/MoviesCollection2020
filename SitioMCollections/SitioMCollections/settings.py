@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'usuarios',
     'PeliSeries',
     'social_django',
-    'rest_framework'
+    'rest_framework',
+    'django_filters',
     
 ]
 

@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import FormPeliserie,FormCarrousel,FormConsulta
 from .models import Categoria,Peliserie,Carousel,Usuario,Consulta
 from rest_framework import viewsets
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import ProductoSerializer
 
 # Create your views here.
@@ -127,7 +130,14 @@ def EliminarCarousel(request,pk):
     consulta=Consulta.objects.all()
     return render(request, 'PeliSeries/mantenedor.html', {"carrousel":carousel,'peliserie':peliserie,'consulta':consulta})     
 
+class ApiMoviesCollectionsPagination(LimitOffsetPagination):
+    default_limit = 2
+    max_limit = 3
+
 #View API
 class ApiMoviesCollections(viewsets.ModelViewSet):
     queryset = Peliserie.objects.all()
     serializer_class = ProductoSerializer
+    filter_backends= (DjangoFilterBackend, SearchFilter)
+    filter_fields = ('id', 'titulo')
+    pagination_class = ApiMoviesCollectionsPagination

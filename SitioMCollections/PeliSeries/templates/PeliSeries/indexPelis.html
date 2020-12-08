@@ -4,7 +4,7 @@
         {% for peli in pelis %}
         <article class="cajapeli-serie">
             <h5> <a href="{% url 'detailPS' pk=peli.pk %}">{{peli.titulo}}</a></h5>
-            <img src="{{ peli.caratula.url }}" alt="">
+            <img src="{{ peli.caratula.url }}" alt="x">
             <a class="guarda-favorito" ><span class="icon-heart "></span></a>
             <form class="descpelis">
                 <div class="sect-estreno">
