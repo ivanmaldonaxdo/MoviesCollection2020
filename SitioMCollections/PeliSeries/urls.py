@@ -1,7 +1,9 @@
-from django.conf.urls import include, url 
+from django.conf.urls import include, url
+from django.urls import path
 from . import views
 from .views import ApiMoviesCollections
 from rest_framework import routers
+from django.views.generic.base import TemplateView
 
 router = routers.DefaultRouter()
 router.register('peliserie', ApiMoviesCollections)
@@ -22,5 +24,6 @@ urlpatterns = [
     url(r'^Carousel/(?P<pk>[0-9]+)/delete/$', views.EliminarCarousel, name='delete_carousel'),
     url(r'^Consultas/$', views.indexConsultas, name='consultas'),
     url(r'^Consultas/(?P<pk>[0-9]+)/delete/$', views.EliminarConsulta, name='delete_consulta'),
-    url(r'^api/', include(router.urls))
+    url(r'^api/', include(router.urls)),
+    url(r'^serviceworker.js',(TemplateView.as_view(template_name="serviceworker.js",content_type='application/javascript',)), name='serviceworker'),
 ]

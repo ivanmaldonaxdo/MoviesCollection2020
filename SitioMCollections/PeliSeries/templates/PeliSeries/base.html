@@ -15,6 +15,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="{% static 'js/funciones.js' %}"></script>
         <script src="{% static 'js/bootstrap.js' %}"></script>
+        <!-- <link rel="manifest" href="/manifest.json"> -->
+        <!-- <script src="{% static 'js/validaSW.js' %} "></script> -->
+        {% load pwa %}
+
+        {% progressive_web_app_meta %}
     </head>
 
     <body>
@@ -80,4 +85,18 @@
             <p>© 2020 MOVIESCOLLECTION | TODOS LOS DERECHOS RESERVADOS</p>
         </footer>
     </body>
+    <script>
+        /*Insertar acá el código para Registrar el Service Worker*/
+        // Initialize the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% url 'serviceworker' %}", {
+                scope: '.' // <--- THIS BIT IS REQUIRED
+            }).then(function (registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }
+    </script>
+    <!-- <a href="/SitioMCollections/PeliSeries/templates/PeliSeries/sw.js"></a> -->
 </html>
