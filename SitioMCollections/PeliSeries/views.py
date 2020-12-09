@@ -8,6 +8,8 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import ProductoSerializer
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
 # Create your views here.
 def indexInicio(request): 
@@ -33,7 +35,11 @@ def indexSeries(request):
 def detailPeliserie(request,pk):
     peliserie=get_object_or_404(Peliserie, pk=pk)
     similar =Peliserie.objects.exclude(pk=pk)
-    return render(request, 'PeliSeries/detallePeliserie.html', {'peliserie': peliserie,'similar':similar})
+
+    titulo=getattr(peliserie,"titulo")
+    spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id='3e5d2fd8172244199903f7be6df33b6b',client_secret='98f6700f6f444210848dfeaa3dfaff7d',))
+    cancion=spotify.search(q= titulo, type='track',limit=1, offset=0, market="CL")
+    return render(request, 'PeliSeries/detallePeliserie.html', {'peliserie': peliserie,'similar':similar,'track':cancion})
 
 #crud consultas
 def indexConsultas(request):
