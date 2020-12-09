@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework',
     'django_filters',
+    'pwa',
     
 ]
 
@@ -150,3 +151,19 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+PWA_APP_NAME = "MoviesCollections"
+PWA_APP_DESCRIPTION = "Las mejores series y peliculas"
+PWA_APP_THEME_COLOR = "#ff8000" 
+PWA_APP_BACKGROUND_COLOR = "#ffffff"
+
+PWA_APP_ICONS = [
+    {
+        "src": "/static/img/photo.png",
+        "sizes": "160x160"
+
+}
+
+]
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, "serviceworker.js")
