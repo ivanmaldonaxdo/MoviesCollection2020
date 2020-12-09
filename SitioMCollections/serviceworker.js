@@ -15,12 +15,11 @@ var filesToCache = [
     '/media/images/carousel/Series/breaking_bad_sl_rwONbcF.jpg',
     '/static/js/bootstrap.js',
     '/static/img/photo.png',
-    '/static/img/fondo-2.jpg',	
+    '/static/img/fondo-2.jpg',
     '/static/img/index_1.jpg',
     '/static/fonts/Roboto-Light.ttf',
     '/static/fonts/Woodland.ttf',
-    '/static/img/Formulario_2.png',	
-    '/static/js/jquery-3.3.1.js', //esta wea manda error	
+    '/static/img/Formulario_2.png',
     '/static/img/LogoWeb MovieCollection(Header).png',
 
 
@@ -66,24 +65,22 @@ self.addEventListener("fetch", event => {
     )
 });
 
-
 //Cache dinamico - Se guarda el cache de cada template que visite el cliete
 
-/*
-self.addEventListener("fetch", function(event) {
-    event.respondWith(
-        fetch(event.request)
-        .then(function(result){
-            return caches.open(staticCacheName)
-            .then(function(c){
-                c.put(event.request.url, result.clone())
-                return result;
-            })
-        })
-        .catch(function(e){
-            return caches.match(event.request);
-        })
-    )
 
-});
-*/
+// self.addEventListener("fetch", function(event) {
+//     event.respondWith(
+//         fetch(event.request)
+//         .then(function(result){
+//             return caches.open(staticCacheName)
+//             .then(function(c){
+//                 c.put(event.request.url, result.clone())
+//                 return result;
+//             })
+//         })
+//         .catch(function(e){
+//             return caches.match(event.request);
+//         })
+//     )
+
+// });
