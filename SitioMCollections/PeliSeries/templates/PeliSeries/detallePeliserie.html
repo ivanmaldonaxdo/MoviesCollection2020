@@ -30,6 +30,9 @@
     </div>
 
 </section>
+<div class="player-spotify">
+    <iframe src="{{track}}" width="300" height="280" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
 <h5 class="recomendada-h5">Porque viste "{{peliserie.titulo}}"..te recomendamos....</h5>
 <div class="recomendada">
     {% for sim in similar|slice:":8" %}
@@ -40,8 +43,6 @@
     {% endfor %}
 </div>
 <!-- 4BED3bvtKkKnAJRsg2f3hJ -->
-<h5>{{track}}</h5>
-<!-- <iframe src="https://open.spotify.com/embed/track/|add:{{track.id}}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 <div class="subir-inicio">
     <a href="#"><span class="icon-arrow-up"></span></a>
 </div>

@@ -41,10 +41,8 @@ def detailPeliserie(request,pk):
     tracks=listado.get('tracks')
     album=tracks.get('items')
     id_track=album[0].get("id")
-    # datos=
-    # items=llaves.keys()
-    # listado['tracks']['items']{['album'}]
-    return render(request, 'PeliSeries/detallePeliserie.html', {'peliserie': peliserie,'similar':similar,'track':id_track})
+    link_track="https://open.spotify.com/embed/track/"+ id_track
+    return render(request, 'PeliSeries/detallePeliserie.html', {'peliserie': peliserie,'similar':similar,'track':link_track})
 
 #crud consultas
 def indexConsultas(request):
