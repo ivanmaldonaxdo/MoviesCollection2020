@@ -547,7 +547,11 @@ header {
     text-decoration-style: none;
 }
 
-
+.player-spotify{
+    margin-top: 20px;
+    display:block;
+    text-align: center;
+}
 
 /* DESCRIPCION /TEXTO DE CAJA-PELISERIE */
 
