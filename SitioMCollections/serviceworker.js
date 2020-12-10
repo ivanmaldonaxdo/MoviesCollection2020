@@ -66,7 +66,7 @@ self.addEventListener('activate', event => {
 
 // Serve from Cache
 
-self.addEventListener("fetch", event => {
+/*self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
@@ -76,24 +76,22 @@ self.addEventListener("fetch", event => {
                 return caches.match('/offline/');
             })
     )
-});
+});*/
 
 //Cache dinamico - Se guarda el cache de cada template que visite el cliete
 
-
-// self.addEventListener("fetch", function(event) {
-//     event.respondWith(
-//         fetch(event.request)
-//         .then(function(result){
-//             return caches.open(staticCacheName)
-//             .then(function(c){
-//                 c.put(event.request.url, result.clone())
-//                 return result;
-//             })
-//         })
-//         .catch(function(e){
-//             return caches.match(event.request);
-//         })
-//     )
-
-// });
+self.addEventListener("fetch", function(event) {
+    event.respondWith(
+        fetch(event.request)
+        .then(function(result){
+            return caches.open(staticCacheName)
+            .then(function(c){
+                c.put(event.request.url, result.clone())
+                return result;
+            })
+        })
+        .catch(function(e){
+            return caches.match(event.request);
+        })
+    )
+});
