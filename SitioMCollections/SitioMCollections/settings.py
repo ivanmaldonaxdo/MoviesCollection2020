@@ -152,10 +152,13 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+
+#Configuracion Manifest
 PWA_APP_NAME = "MoviesCollections"
 PWA_APP_DESCRIPTION = "Las mejores series y peliculas"
 PWA_APP_THEME_COLOR = "#ff8000" 
 PWA_APP_BACKGROUND_COLOR = "#ffffff"
+PWA_APP_DISPLAY = "standalone"
 
 PWA_APP_ICONS = [
     {
