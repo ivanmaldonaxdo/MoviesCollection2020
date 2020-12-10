@@ -35,11 +35,16 @@ def indexSeries(request):
 def detailPeliserie(request,pk):
     peliserie=get_object_or_404(Peliserie, pk=pk)
     similar =Peliserie.objects.exclude(pk=pk)
-
     titulo=getattr(peliserie,"titulo")
     spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id='3e5d2fd8172244199903f7be6df33b6b',client_secret='98f6700f6f444210848dfeaa3dfaff7d',))
-    cancion=spotify.search(q= titulo, type='track',limit=1, offset=0, market="CL")
-    return render(request, 'PeliSeries/detallePeliserie.html', {'peliserie': peliserie,'similar':similar,'track':cancion})
+    listado=spotify.search(q= titulo, type='track',limit=1, offset=1, market="US")
+    tracks=listado.get('tracks')
+    album=tracks.get('items')
+    id_track=album[0].get("id")
+    # datos=
+    # items=llaves.keys()
+    # listado['tracks']['items']{['album'}]
+    return render(request, 'PeliSeries/detallePeliserie.html', {'peliserie': peliserie,'similar':similar,'track':id_track})
 
 #crud consultas
 def indexConsultas(request):
