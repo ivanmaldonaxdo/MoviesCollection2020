@@ -933,7 +933,7 @@ footer p {
     .manten-icono{
         right:60px;
     }
-    .tabla{
+   .tabla{
         overflow-x:auto
     }
     .tabla>table{
@@ -966,7 +966,7 @@ footer p {
         content: attr(data-label);
         font-weight: bold;
         text-transform: uppercase;
-        float: left;
+        float: left; 
     }
    
 }
